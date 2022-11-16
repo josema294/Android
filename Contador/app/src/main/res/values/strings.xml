@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">El contador de Jose</string>
+
+
+
+    <string name="a"> "Pulsa que te pulsa, llevas: "</string>
+    <string name="b"> "Pulsadita numero: "</string>
+    <string name="c"> "Has pulsado y van!! : "</string>
+    <string name="d"> "Otra pulsacion mas, estas en racha: "</string>
+    <string name="e"> "Mr. Pulsaciones podria llamarte, tienes: "</string>
+
+
+    <string name="f"> "Para atras, como los cangrejos, hay: "</string>
+    <string name="g"> "asi no llegaras lejos, tienes: "</string>
+    <string name="h"> "una menos!!, tienes: "</string>
+    <string name="i"> "Resta que te restas te quedas en: "</string>
+    <string name="j"> "Mas restas que una clase de primaria van: "</string>
+
+
+    <string name="z"> "El contador ha sido reseteado, vuelves a empezar"</string>
+
+
+
+
+
+</resources>
