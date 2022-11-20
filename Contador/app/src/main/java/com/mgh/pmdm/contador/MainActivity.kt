@@ -1,19 +1,22 @@
 package com.mgh.pmdm.contador
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Switch
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
     var contador = 0
-    var playorpause = true
+    lateinit var textViewContador: TextView
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Referencia al TextView
-        val textViewContador = findViewById<TextView>(R.id.textViewContador)
+        //textViewContador = findViewById<TextView>(R.id.textViewContador)
 
         // Inicializamos el TextView con el contador a 0
+        textViewContador= findViewById<TextView>(R.id.textViewContador)
         textViewContador.text = contador.toString()
 
         // Referencia al botón
@@ -41,6 +45,9 @@ class MainActivity : AppCompatActivity() {
         //Referencia al boton de restar
 
         val substrac = findViewById<Button>(R.id.btsubtrac)
+
+        //Referencia boton open
+        val btnopen = findViewById<Button>(R.id.btnopen)
 
         //Preparamos el reproductor de audio para cuando se acrtive o desactive
 
@@ -66,6 +73,17 @@ class MainActivity : AppCompatActivity() {
             contador --
             textViewContador.setText(randomizerless() + contador.toString())
         }
+
+        //Codigo boton open
+
+        btnopen.setOnClickListener {
+
+            val intent = Intent(baseContext,MostrarContador::class.java)
+            intent.putExtra("contador", contador)
+            startActivity(intent)
+
+        }
+
         //comprobamos con un condicional el estado del switch para hacer sonar o no la musica
         btnplayorpause.setOnClickListener {
 
@@ -81,7 +99,22 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
 
+    //Guardamos el estado si giramos la pantalla
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val salvado: CharSequence = textViewContador.text.toString()
+        outState.putCharSequence("TEXTO", salvado)
+        outState.putInt("CONTADOR", contador)
+    }
+
+    //Recuperamos el estado
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        contador = savedInstanceState.getInt("CONTADOR")
+        textViewContador.setText(savedInstanceState.getString("TEXTO"))
     }
 
     // Creamos funciona que arroja de forma aleatoria strings de nuestros recursos

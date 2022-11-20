@@ -2,7 +2,6 @@
     <string name="app_name">El contador de Jose</string>
 
 
-
     <string name="a"> "Pulsa que te pulsa, llevas: "</string>
     <string name="b"> "Pulsadita numero: "</string>
     <string name="c"> "Has pulsado y van!! : "</string>
@@ -18,9 +17,6 @@
 
 
     <string name="z"> "El contador ha sido reseteado, vuelves a empezar"</string>
-
-
-
 
 
 </resources>
