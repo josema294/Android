@@ -47,7 +47,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textTittle"
-        app:layout_constraintTop_toBottomOf="@+id/textTittle" />
+        app:layout_constraintTop_toBottomOf="@+id/textTittle"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextTextPeso"
@@ -61,7 +62,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextTextAltura"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextAltura" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextAltura"
+        android:importantForAutofill="no" />
 
     <RadioGroup
         android:id="@+id/radiogruoupe"
