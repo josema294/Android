@@ -8,13 +8,13 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationAvocado"
-        android:layout_width="241dp"
-        android:layout_height="325dp"
+        android:layout_width="276dp"
+        android:layout_height="268dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96"
+        app:layout_constraintVertical_bias="1.0"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/healthyavocado"
@@ -33,37 +33,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.132" />
 
     <EditText
         android:id="@+id/editTextTextAltura"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
         android:layout_marginTop="23dp"
         android:ems="10"
+        android:hint="@string/alturaHint"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
-        android:hint="@string/alturaHint"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textTittle"
-        app:layout_constraintTop_toBottomOf="@+id/textTittle"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/textTittle" />
 
     <EditText
         android:id="@+id/editTextTextPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:ems="10"
+        android:hint="@string/pesoHint"
+        android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        android:hint="@string/pesoHint"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextTextAltura"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextAltura"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextAltura" />
 
     <RadioGroup
         android:id="@+id/radiogruoupe"
@@ -92,6 +94,22 @@
             android:text="@string/female" />
 
     </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="9dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="@string/submit"
+        android:textStyle="bold"
+        android:textColor="@color/design_default_color_background"
+        app:layout_constraintBottom_toTopOf="@+id/animationAvocado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radiogruoupe" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@
     <string name="pesoHint"> Introduce tu peso en KG  </string>
     <string name="male"> Hombre </string>
     <string name="female"> Mujer </string>
+    <string name="submit"> Calcular </string>
 
 </resources>
 
