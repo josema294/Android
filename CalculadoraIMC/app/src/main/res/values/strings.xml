@@ -1,3 +1,5 @@
+
+
 <resources>
     <string name="app_name">Calculadora IMC de Jose</string>
     <string name="titulotext"> Calculo de IMC </string>
@@ -9,6 +11,9 @@
     <string name="female"> Mujer </string>
     <string name="submit"> Calcular </string>
     <string name="snack"> Por favor introduce todos los datos requeridos </string>
+    <string name="mostrarIMC">Tu indice de masa corporal es:  </string>
+    <string name="prueba">prueba</string>
+    <string name="contentdescription">Emoticono que muestra el estado de animo </string>
 
 
 </resources>
