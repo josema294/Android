@@ -104,19 +104,19 @@ class MainActivity : AppCompatActivity() {
             if (imc!! < 18.5) {
                 imcResultado = 0
             }
-            if (18.5 <= imc!! && imc!! < 24.9) {
+            if (18.5 <= imc!! && imc!! < 25) {
                 imcResultado = 1
             }
-            if (24.9 <= imc!! && imc!! < 30.9) {
+            if (25 <= imc!! && imc!! < 30.0) {
                 imcResultado = 2
             }
-            if (30 <= imc!! && imc!! < 35.9) {
+            if (30 <= imc!! && imc!! < 35.0) {
                 imcResultado = 3
             }
-            if (35 <= imc!! && imc!! < 39.9) {
+            if (35 <= imc!! && imc!! < 40) {
                 imcResultado = 4
             }
-            if (imc!! > 39.9) {
+            if (imc!! >= 40) {
                 imcResultado = 5
             }
 
@@ -127,19 +127,19 @@ class MainActivity : AppCompatActivity() {
             if (imc!! < 16.5) {
                 imcResultado = 0
             }
-            if (16.5 <= imc!! && imc!! <= 22.9) {
+            if (16.5 <= imc!! && imc!! < 23) {
                 imcResultado = 1
             }
-            if (22.9 < imc!! && imc!! <= 25.9) {
+            if (23.0 <= imc!! && imc!! < 26.0) {
                 imcResultado = 2
             }
-            if (26 < imc!! && imc!! <= 30.9) {
+            if (26 <= imc!! && imc!! < 31) {
                 imcResultado = 3
             }
-            if (31 < imc!! && imc!! <= 33.9) {
+            if (31 <= imc!! && imc!! < 34) {
                 imcResultado = 4
             }
-            if ( imc!! > 33.9) {
+            if ( imc!! >= 34) {
                 imcResultado = 5
             }
 
