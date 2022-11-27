@@ -8,7 +8,10 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
+import java.text.DecimalFormat
 
 
 class MainActivity : AppCompatActivity() {
@@ -86,15 +89,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //funcion calculo del imc devolvera un entero que representa los posibles resultados
+    //funcion calculo del imc y devolvera un entero que representa los posibles rangos del imc
     fun imc(): Int {
 
-        val gendermale = rbutonM.isActivated
-        val weight: Int = (textKG.text.toString()).toInt()
-        val height: Int = (textCM.text.toString()).toInt()
+        val gendermale = rbutonM.isChecked
+        val weight: Double = (textKG.text.toString()).toDouble()
+        val height: Double = ((textCM.text.toString()).toDouble())/100
 
-
-        imc = (weight.toDouble() / height.toDouble() / 10)
+        imc = weight/ Math.pow(height,2.0)
         var imcResultado = 0
 
         if (gendermale) {
@@ -115,9 +117,10 @@ class MainActivity : AppCompatActivity() {
                 imcResultado = 4
             }
             if (imc!! > 39.9) {
-                imcResultado = 4
+                imcResultado = 5
             }
-        }
+
+                   }
 
         if (!gendermale) {
 
@@ -136,8 +139,8 @@ class MainActivity : AppCompatActivity() {
             if (31 < imc!! && imc!! <= 33.9) {
                 imcResultado = 4
             }
-            if (imc!! > 33.9) {
-                imcResultado = 4
+            if ( imc!! > 33.9) {
+                imcResultado = 5
             }
 
         }
@@ -155,24 +158,32 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("ResourceType")
     fun principal() {
 
-        val resultado = imc()
-        /* val animation = findViewById<LottieAnimationView>(R.id.animationAvocado)*/
+        val resultado =  imc()
+        val formateado = DecimalFormat("##.##")
+        val imcMostrar = formateado.format(imc)
+       // val imcMostrar : String = resultado.toString()
+        val animation = findViewById<LottieAnimationView>(R.id.animationAvocado)
         val img = findViewById<ImageView>(R.id.imgEmoji)
 
         img.visibility = View.VISIBLE
-        mostradoIMC.text = (getString(R.string.mostrarIMC) + imc)
         mostradoIMC.visibility = View.VISIBLE
-        /*animation.isVisible = false*/
+        animation.isVisible = false
 
 
         when (resultado) {
 
-            0 -> {img.setImageResource(R.raw.bajo) }
-            1 -> {img.setImageResource(R.raw.normal) }
-            2 -> {img.setImageResource(R.raw.sobrepeso) }
-            3 -> {img.setImageResource(R.raw.obesidad1) }
-            4 -> {img.setImageResource(R.raw.obesidad2) }
-            5 -> {img.setImageResource(R.raw.obesidad3) }
+            0 -> {img.setImageResource(R.raw.bajo)
+                mostradoIMC.text = (getString(R.string.mostrarIMC) + imcMostrar  + "\n" + getString(R.string.bajo) )}
+            1 -> {img.setImageResource(R.raw.normal)
+                mostradoIMC.text = (getString(R.string.mostrarIMC) + imcMostrar + "\n" + getString(R.string.normal) )}
+            2 -> {img.setImageResource(R.raw.sobrepeso)
+                mostradoIMC.text = (getString(R.string.mostrarIMC) + imcMostrar + "\n" + getString(R.string.sobrepeso) )}
+            3 -> {img.setImageResource(R.raw.obesidad1)
+                mostradoIMC.text = (getString(R.string.mostrarIMC) + imcMostrar + "\n" + getString(R.string.obesidad1) )}
+            4 -> {img.setImageResource(R.raw.obesidad2)
+                mostradoIMC.text = (getString(R.string.mostrarIMC) + imcMostrar + "\n" + getString(R.string.obesidad2) )}
+            5 -> {img.setImageResource(R.raw.obesidad3)
+                mostradoIMC.text = (getString(R.string.mostrarIMC) + imcMostrar + "\n" + getString(R.string.obesidad3) )}
         }
 
 

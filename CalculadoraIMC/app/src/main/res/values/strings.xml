@@ -11,7 +11,14 @@
     <string name="female"> Mujer </string>
     <string name="submit"> Calcular </string>
     <string name="snack"> Por favor introduce todos los datos requeridos </string>
-    <string name="mostrarIMC">Tu indice de masa corporal es:  </string>
+    <string name="mostrarIMC">Tu indice de masa corporal es: \n </string>
+    <string name="mostrarIMC2">Tu indice de masa corporal es: \n </string>
+    <string name="bajo">Estado: Bajo Peso </string>
+    <string name="normal">Estado: Normal </string>
+    <string name="sobrepeso">Estado: sobrepeso </string>
+    <string name="obesidad1">Estado: Obesidad tipo 1 </string>
+    <string name="obesidad2">Estado: Obesidad tipo 2 </string>
+    <string name="obesidad3">Estado: Obesidad tipo 3 </string>
     <string name="prueba">prueba</string>
     <string name="contentdescription">Emoticono que muestra el estado de animo </string>
 
