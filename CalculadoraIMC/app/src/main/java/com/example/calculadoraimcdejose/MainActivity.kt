@@ -189,6 +189,34 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //Guardamos estado de la aplicacion
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putCharSequence("textCM", findViewById<TextView>(R.id.editTextTextAltura).text.toString())
+        outState.putCharSequence("textKG", findViewById<TextView>(R.id.editTextTextPeso).text.toString())
+        outState.putCharSequence("mostradoIMC", findViewById<TextView>(R.id.mostradoIMC).text.toString())
+
+
+
+       /* img.visibility = View.VISIBLE
+        mostradoIMC.visibility = View.VISIBLE
+        animation.isVisible = false
+*/
+
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        findViewById<TextView>(R.id.editTextTextAltura).text = savedInstanceState.getString("textCM")
+        findViewById<TextView>(R.id.editTextTextPeso).text = savedInstanceState.getString("textKG")
+        findViewById<TextView>(R.id.mostradoIMC).text = savedInstanceState.getString("mostradoIMC")
+
+
+    }
+
+
+
+
 }
 
 
