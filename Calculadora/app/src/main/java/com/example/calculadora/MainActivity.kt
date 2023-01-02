@@ -1,3 +1,4 @@
+
 package com.example.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
@@ -36,9 +37,13 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
         binding.button7.setOnClickListener(this)
         binding.button8.setOnClickListener(this)
         binding.button9.setOnClickListener(this)
-        binding.buttonAC.setOnLongClickListener(this)
+        binding.buttonAC.setOnClickListener(this)
         binding.buttoncomm.setOnClickListener(this)
         binding.buttonPlus.setOnClickListener(this)
+
+        //asignamos implementacion longclick
+
+        binding.buttonAC.setOnLongClickListener(this)
 
 
 
@@ -127,9 +132,23 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
 
             binding.buttonPlus.id -> {
 
-                val registro = binding.primaryScreen.text
-                binding.secondaryScreen.text = registro
-                binding.primaryScreen.text = "+"
+                if (binding.secondaryScreen.text.isEmpty()) {
+
+                    val registro = binding.primaryScreen.text
+                    binding.secondaryScreen.text = registro
+                    binding.primaryScreen.text = "+"
+
+                }
+
+                else {
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    binding.secondaryScreen.text = (registro + registro2).toString()
+                    binding.primaryScreen.text = "+"
+
+                }
+
 
 
 
@@ -138,8 +157,30 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
 
             binding.buttonAC.id -> {
 
-                val registro = binding.primaryScreen.text.toString()
-                binding.primaryScreen.text = registro + '9'
+                if (binding.primaryScreen.text.isEmpty()) {
+                    binding.secondaryScreen.text = "0"
+                }
+
+                //
+                if (binding.primaryScreen.text.contains('+')) {
+
+                    var operador1 = binding.primaryScreen.text.trimStart().toString().toDouble()
+                    var operador2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    val registro = operador1 + operador2
+                    binding.secondaryScreen.text = registro.toString()
+                    binding.primaryScreen.text= ""
+
+                }
+
+                if (binding.secondaryScreen.text.isEmpty()) {
+                    binding.secondaryScreen.text = binding.primaryScreen.text
+                    binding.primaryScreen.text= ""
+                }
+
+
+
+
             }
 
         }
@@ -150,6 +191,7 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
     override fun onLongClick(p0: View?) : Boolean {
 
         binding.primaryScreen.text = ""
+        binding.secondaryScreen.text = ""
         return true
     }
 
