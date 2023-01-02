@@ -1,17 +1,13 @@
-
 package com.example.calculadora
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
-import androidx.appcompat.app.AlertDialog
-import androidx.core.view.ViewCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.example.calculadora.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener    {
+class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -40,16 +36,16 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
         binding.buttonAC.setOnClickListener(this)
         binding.buttoncomm.setOnClickListener(this)
         binding.buttonPlus.setOnClickListener(this)
+        binding.buttonMinus.setOnClickListener(this)
+        binding.buttonMulti.setOnClickListener(this)
+        binding.buttonDiv.setOnClickListener(this)
 
         //asignamos implementacion longclick
 
         binding.buttonAC.setOnLongClickListener(this)
 
 
-
         // binding.secondaryScreen.text = secondaryScreenValue.toString()
-
-
 
 
     }
@@ -64,14 +60,14 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
             binding.button0.id -> {
 
                 val registro = binding.primaryScreen.text.toString()
-                binding.primaryScreen.text = registro+'0'
+                binding.primaryScreen.text = registro + '0'
 
             }
 
             binding.button1.id -> {
 
                 val registro = binding.primaryScreen.text.toString()
-                binding.primaryScreen.text = registro+ '1'
+                binding.primaryScreen.text = registro + '1'
             }
             binding.button2.id -> {
 
@@ -132,15 +128,16 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
 
             binding.buttonPlus.id -> {
 
-                if (binding.secondaryScreen.text.isEmpty()) {
+                if (!parseableDouble(binding.primaryScreen.text.toString())) {
+
+                    binding.primaryScreen.text = "+"
+                } else if (binding.secondaryScreen.text.isEmpty()) {
 
                     val registro = binding.primaryScreen.text
                     binding.secondaryScreen.text = registro
                     binding.primaryScreen.text = "+"
 
-                }
-
-                else {
+                } else {
                     val registro = binding.primaryScreen.text.toString().toDouble()
                     val registro2 = binding.secondaryScreen.text.toString().toDouble()
 
@@ -150,49 +147,203 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener  
                 }
 
 
+            }
 
+            binding.buttonMinus.id -> {
+
+                if (!parseableDouble(binding.primaryScreen.text.toString())) {
+
+                    binding.primaryScreen.text = "-"
+                } else if (binding.secondaryScreen.text.isEmpty()) {
+
+                    val registro = binding.primaryScreen.text
+                    binding.secondaryScreen.text = registro
+                    binding.primaryScreen.text = "-"
+
+                } else {
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    binding.secondaryScreen.text = (registro2 + registro).toString()
+                    binding.primaryScreen.text = "-"
+
+                }
+
+            }
+
+            binding.buttonMulti.id -> {
+
+                if (binding.primaryScreen.text.contains('*') || binding.primaryScreen.text.contains(
+                        '/'
+                    )
+                ) {
+                    binding.primaryScreen.text = binding.primaryScreen.text.removeRange(0, 1)
+                }
+
+                if (!parseableDouble(binding.primaryScreen.text.toString())) {
+
+                    binding.primaryScreen.text = "*"
+                } else if (binding.secondaryScreen.text.isEmpty()) {
+
+                    val registro = binding.primaryScreen.text
+                    binding.secondaryScreen.text = registro
+                    binding.primaryScreen.text = "*"
+
+                } else {
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    binding.secondaryScreen.text = (registro2 * registro).toString()
+                    binding.primaryScreen.text = "*"
+
+                }
+
+            }
+
+            binding.buttonDiv.id -> {
+
+                if (binding.primaryScreen.text.contains('*') || binding.primaryScreen.text.contains(
+                        '/'
+                    )
+                ) {
+                    binding.primaryScreen.text = binding.primaryScreen.text.removeRange(0, 1)
+                }
+
+                if (!parseableDouble(binding.primaryScreen.text.toString())) {
+
+                    binding.primaryScreen.text = "/"
+                } else if (binding.secondaryScreen.text.isEmpty()) {
+
+                    val registro = binding.primaryScreen.text
+                    binding.secondaryScreen.text = registro
+                    binding.primaryScreen.text = "/"
+
+                } else {
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    binding.secondaryScreen.text = (registro2 / registro).toString()
+                    binding.primaryScreen.text = "/"
+
+                }
 
             }
 
 
             binding.buttonAC.id -> {
 
-                if (binding.primaryScreen.text.isEmpty()) {
-                    binding.secondaryScreen.text = "0"
-                }
+                if(binding.primaryScreen.text.first() == '+') {
 
-                //
-                if (binding.primaryScreen.text.contains('+')) {
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
 
-                    var operador1 = binding.primaryScreen.text.trimStart().toString().toDouble()
-                    var operador2 = binding.secondaryScreen.text.toString().toDouble()
+                    binding.secondaryScreen.text = (registro2 + registro).toString()
+                    binding.primaryScreen.text = ""
 
-                    val registro = operador1 + operador2
-                    binding.secondaryScreen.text = registro.toString()
-                    binding.primaryScreen.text= ""
 
                 }
 
-                if (binding.secondaryScreen.text.isEmpty()) {
-                    binding.secondaryScreen.text = binding.primaryScreen.text
-                    binding.primaryScreen.text= ""
+                else if(binding.primaryScreen.text.first() == '-') {
+
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    binding.secondaryScreen.text = (registro2 + registro).toString()
+                    binding.primaryScreen.text = ""
+
+
+                }
+
+                else if(binding.primaryScreen.text.first() == '*') {
+
+                    binding.primaryScreen.text = binding.primaryScreen.text.removeRange(0,1)
+
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    binding.secondaryScreen.text = (registro * registro2).toString()
+                    binding.primaryScreen.text = ""
+
+
+                }
+
+                else if(binding.primaryScreen.text.first() == '/') {
+
+                    binding.primaryScreen.text = binding.primaryScreen.text.removeRange(0,1)
+
+                    val registro = binding.primaryScreen.text.toString().toDouble()
+                    val registro2 = binding.secondaryScreen.text.toString().toDouble()
+
+                    binding.secondaryScreen.text = (registro / registro2).toString()
+                    binding.primaryScreen.text = ""
+
+
+                }
+
+                if (!parseableDouble(binding.primaryScreen.text.toString())) {
+
+                    binding.primaryScreen.text = ""
+                } else if (binding.secondaryScreen.text.isEmpty()) {
+
+                    val registro = binding.primaryScreen.text
+                    binding.secondaryScreen.text = registro
+                    binding.primaryScreen.text = ""
+                } else if (!binding.primaryScreen.text.contains('+') ||
+                    !binding.primaryScreen.text.contains('-') ||
+                    !binding.primaryScreen.text.contains('*') ||
+                    !binding.primaryScreen.text.contains('/') ||
+                    binding.secondaryScreen.text.isEmpty()
+                ) {
+
+                    val registro = binding.primaryScreen.text
+                    binding.secondaryScreen.text = registro
+                    binding.primaryScreen.text = ""
+
+                } else {
+
+
                 }
 
 
+                /*
 
+                    if (binding.primaryScreen.text.contains('*') || binding.primaryScreen.text.contains('/')) {
+                        binding.primaryScreen.text = binding.primaryScreen.text.removeRange(0,1)
+                    }
 
+                    if (!parseableDouble(binding.primaryScreen.text.toString()))
+                    else if (binding.primaryScreen.text.isEmpty()) {
+                        binding.secondaryScreen.text = "0"
+                    } else if (binding.primaryScreen.text.contains('+')) {
+
+                        var operador1 = binding.primaryScreen.text.trimStart().toString().toDouble()
+                        var operador2 = binding.secondaryScreen.text.toString().toDouble()
+
+                        val registro = operador1 + operador2
+                        binding.secondaryScreen.text = registro.toString()
+                        binding.primaryScreen.text = ""
+                    } else if (binding.secondaryScreen.text.isEmpty()) {
+                        binding.secondaryScreen.text = binding.primaryScreen.text
+                        binding.primaryScreen.text = ""
+                    }*/
             }
-
         }
-
-
     }
 
-    override fun onLongClick(p0: View?) : Boolean {
+    override fun onLongClick(p0: View?): Boolean {
 
         binding.primaryScreen.text = ""
         binding.secondaryScreen.text = ""
         return true
+    }
+
+    fun parseableDouble(str: String): Boolean {
+        try {
+            str.toDouble()
+            return true
+        } catch (e: NumberFormatException) {
+            return false
+        }
     }
 
 
