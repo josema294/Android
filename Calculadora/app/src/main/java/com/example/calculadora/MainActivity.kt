@@ -11,11 +11,6 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
-
-    //private var primaryScreenValue: String = ""
-    //private var secondaryScreenValue : Double = 0.0
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater);
@@ -45,15 +40,11 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener {
         binding.buttonAC.setOnLongClickListener(this)
 
 
-        // binding.secondaryScreen.text = secondaryScreenValue.toString()
-
-
     }
 
     // Implementamos la interfaz onclick, un when distribuye la accion del clik
 
-    override fun onClick(p0: View) {
-
+    override fun onClick(p0: View ) {
 
         when (p0.id) {
 
@@ -232,7 +223,17 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener {
 
             binding.buttonAC.id -> {
 
-                if(binding.primaryScreen.text.first() == '+') {
+                if (binding.primaryScreen.text.toString().isEmpty() && binding.secondaryScreen.text.isEmpty()) {
+
+                    binding.secondaryScreen.text="0"
+                }
+
+                else if (binding.primaryScreen.toString().isEmpty()){
+
+
+                }
+
+                else if (binding.primaryScreen.text.first() == '+') {
 
                     val registro = binding.primaryScreen.text.toString().toDouble()
                     val registro2 = binding.secondaryScreen.text.toString().toDouble()
@@ -274,58 +275,20 @@ class MainActivity : AppCompatActivity(), OnClickListener, OnLongClickListener {
                     val registro = binding.primaryScreen.text.toString().toDouble()
                     val registro2 = binding.secondaryScreen.text.toString().toDouble()
 
-                    binding.secondaryScreen.text = (registro / registro2).toString()
+                    binding.secondaryScreen.text = (registro2 / registro).toString()
                     binding.primaryScreen.text = ""
-
 
                 }
 
-                if (!parseableDouble(binding.primaryScreen.text.toString())) {
-
-                    binding.primaryScreen.text = ""
-                } else if (binding.secondaryScreen.text.isEmpty()) {
-
-                    val registro = binding.primaryScreen.text
-                    binding.secondaryScreen.text = registro
-                    binding.primaryScreen.text = ""
-                } else if (!binding.primaryScreen.text.contains('+') ||
-                    !binding.primaryScreen.text.contains('-') ||
-                    !binding.primaryScreen.text.contains('*') ||
-                    !binding.primaryScreen.text.contains('/') ||
-                    binding.secondaryScreen.text.isEmpty()
-                ) {
-
-                    val registro = binding.primaryScreen.text
-                    binding.secondaryScreen.text = registro
-                    binding.primaryScreen.text = ""
-
-                } else {
+                else { binding.secondaryScreen.text = binding.primaryScreen.text.toString()
+                    binding.primaryScreen.text=""}
 
 
-                }
 
 
-                /*
 
-                    if (binding.primaryScreen.text.contains('*') || binding.primaryScreen.text.contains('/')) {
-                        binding.primaryScreen.text = binding.primaryScreen.text.removeRange(0,1)
-                    }
 
-                    if (!parseableDouble(binding.primaryScreen.text.toString()))
-                    else if (binding.primaryScreen.text.isEmpty()) {
-                        binding.secondaryScreen.text = "0"
-                    } else if (binding.primaryScreen.text.contains('+')) {
 
-                        var operador1 = binding.primaryScreen.text.trimStart().toString().toDouble()
-                        var operador2 = binding.secondaryScreen.text.toString().toDouble()
-
-                        val registro = operador1 + operador2
-                        binding.secondaryScreen.text = registro.toString()
-                        binding.primaryScreen.text = ""
-                    } else if (binding.secondaryScreen.text.isEmpty()) {
-                        binding.secondaryScreen.text = binding.primaryScreen.text
-                        binding.primaryScreen.text = ""
-                    }*/
             }
         }
     }
